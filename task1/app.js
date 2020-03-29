@@ -1,9 +1,8 @@
 const app = require('commander');
 const fs = require('fs');
-const stream = require('stream');
-const pipeline = require('stream');
+var readline = require('readline')
 
-const {handleArgumentError} = require('./helper');
+const { handleArgumentError, encode, decodee } = require('./helper');
 const transformStream = require('./transformSteam');
 
 app
@@ -13,61 +12,35 @@ app
   .option('-o, --output <outputFile>', 'output file');
 
 app.parse(process.argv);
-
-console.log(app.action)
 let inputFile, transformer, outputFile;
 
-if(app.action === 'encode' || app.action === 'decode') { 
-    if(app.input) {
-        inputFile = fs.createReadStream(app.input, 'utf-8');
+if((app.action === 'encode' || app.action === 'decode') && !isNaN(app.shift) ) { 
+        app.input ? inputFile = fs.createReadStream(app.input, 'utf-8') : inputFile = app.args[0];
         transformer = new transformStream({shift: app.shift, action: app.action});
-        app.output ? outputFile = fs.createWriteStream('oput.txt', {transformer}) : outputFile = process.stdout.write("Hello World\n");
-        inputFile
-        .on('error', function (err) {
-          handleArgumentError()
-        })
-        .pipe(transformer)
-        .on('error', function (err) {
-          handleArgumentError()
-        })
-        .pipe(outputFile)
-        .on('error', function (err) {
-          handleArgumentError()
-        })
-        // // if(inputFile.reading) 
-        // }
-        // pipeline(
-        //     inputFile, 
-        //     transformer, 
-        //     outputFile, 
-        //     (err) => {
-        //       if (err) {
-        //         console.error('Pipeline failed', err);
-        //       } else {
-        //         console.log('Pipeline succeeded');
-        //       }
-        //     }
-        // )
-    } else {
-        // process.stdin.setEncoding('utf8');b
-
-        // process.stdin.on('readable', () => {
-        //   let chunk;
-        //   console.log(process.stdin)
-        //   // Use a loop to make sure we read all available data.
-        //   while ((chunk = process.stdin.read()) !== null) {
-        //     process.stdout.write(`data: ${chunk}`);
-        //   }
-        // });
-        
-        // process.stdin.on('end', () => {
-        //   process.stdout.write('end');
-        // });
-
-    }
+        app.output ? outputFile = fs.createWriteStream('oput.txt') : outputFile = process.stdout;
+        if(app.input) {
+          inputFile
+          .on('error', function (err) {
+            handleArgumentError()
+          })
+          .pipe(transformer)
+          .on('error', function (err) {
+            handleArgumentError()
+          })
+          .pipe(outputFile)
+          .on('error', function (err) {
+            handleArgumentError()
+          })
+        } else {
+          let stdin = process.openStdin();
+          process.stdout.write(`Enter the code`)
+          stdin.addListener("data", function(name) {
+              let result;
+              app.action === 'encode' ? result = encode(name.toString(), app.shift) : result = decode(name.toString(), app.shift)
+              process.stdout.write(`${result}`)
+            })
+        }
 
 } else {
-
-  console.log(handleArgumentError, 'error')
     handleArgumentError();
 };
