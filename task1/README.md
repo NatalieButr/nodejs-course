@@ -5,14 +5,14 @@
 <h1>Task 1. Caesar cipher CLI tool </h1>
 
 
-<p>Simple CLI tool which encode and decode a text by Caesar cipher.</p>
+<p>Simple CLI tool which encode and decode a text by Caesar cipher. (use only the English alphabet) </p>
 
-CLI tool accept 4 options:
+CLI tool accepts 4 options:
 
-1.  **-s, --shift**: a shift (required)
-2.  **-i, --input**: an input file
-3.  **-o, --output**: an output file
-4.  **-a, --action**: an action encode/decode (required)
+1.  **-a, --action**: an action encode/decode (required) 
+2.  **-s, --shift**: a shift (required) 
+3.  **-i, --input**: an input file 
+4.  **-o, --output**: an output file
 
 
 Command examples: 

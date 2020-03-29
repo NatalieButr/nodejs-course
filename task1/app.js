@@ -6,8 +6,8 @@ const { handleArgumentError, encode, decodee } = require('./helper');
 const transformStream = require('./transformSteam');
 
 app
-  .option('-a, --action <action>', 'type of action')
-  .option('-s, --shift <size>', 'shift size')
+  .requiredOption('-a, --action <action>', 'type of action')
+  .requiredOption('-s, --shift <size>', 'shift size')
   .option('-i, --input <inputFile>', 'input file')
   .option('-o, --output <outputFile>', 'output file');
 
@@ -18,6 +18,7 @@ if((app.action === 'encode' || app.action === 'decode') && !isNaN(app.shift) ) {
         app.input ? inputFile = fs.createReadStream(app.input, 'utf-8') : inputFile = app.args[0];
         transformer = new transformStream({shift: app.shift, action: app.action});
         app.output ? outputFile = fs.createWriteStream('oput.txt') : outputFile = process.stdout;
+       
         if(app.input) {
           inputFile
           .on('error', function (err) {
@@ -32,6 +33,7 @@ if((app.action === 'encode' || app.action === 'decode') && !isNaN(app.shift) ) {
             handleArgumentError()
           })
         } else {
+          
           let stdin = process.openStdin();
           process.stdout.write(`Enter the code`)
           stdin.addListener("data", function(name) {

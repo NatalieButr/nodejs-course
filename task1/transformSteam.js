@@ -19,10 +19,12 @@ class transformStream extends Transform {
       if (chunk === '\u0003') {
         process.exit()
       }
+      
       let newChunk 
       this.action === 'encode' ? newChunk = encode(chunk, this.shift) : newChunk = decode(chunk, this.shift)
-      console.log(newChunk)
+
       callback(null, newChunk)
     }
-  }
+}
+
 module.exports = transformStream;

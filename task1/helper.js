@@ -9,6 +9,7 @@ exports.decode = (chunk, shift) => {
     result = encode(chunk, shift);
     return result;
 }   
+
 exports.encode = (chunk, shift) => {
     return chunk.split('').map((item, i) => {
         let char = item.charCodeAt();    
@@ -19,5 +20,4 @@ exports.encode = (chunk, shift) => {
         }
         return item
     }).join('')
-
 }
