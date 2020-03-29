@@ -3,7 +3,7 @@ const fs = require('fs');
 const stream = require('stream');
 const pipeline = require('stream');
 
-const handleArgumentError = require('./helper');
+const {handleArgumentError} = require('./helper');
 const transformStream = require('./transformSteam');
 
 app
@@ -13,28 +13,27 @@ app
   .option('-o, --output <outputFile>', 'output file');
 
 app.parse(process.argv);
+
+console.log(app.action)
 let inputFile, transformer, outputFile;
-if(app.action === 'encode' || app.action === 'decode'){ 
+
+if(app.action === 'encode' || app.action === 'decode') { 
     if(app.input) {
-        const inputFile = fs.createReadStream(app.input, 'utf-8');
-        console.log(inputFile)
-        const transformer = new transformStream({shift: app.shift, action: app.action});
-        const outputFile = fs.createWriteStream('oput.txt', {transformer});
+        inputFile = fs.createReadStream(app.input, 'utf-8');
+        transformer = new transformStream({shift: app.shift, action: app.action});
+        app.output ? outputFile = fs.createWriteStream('oput.txt', {transformer}) : outputFile = process.stdout.write("Hello World\n");
         inputFile
         .on('error', function (err) {
-            console.log(err)
-            process.exit(-1);
-          })
+          handleArgumentError()
+        })
         .pipe(transformer)
         .on('error', function (err) {
-            console.log(err)
-            process.exit(-1);
-          })
+          handleArgumentError()
+        })
         .pipe(outputFile)
         .on('error', function (err) {
-            console.log(err)
-            process.exit(-1);
-          })
+          handleArgumentError()
+        })
         // // if(inputFile.reading) 
         // }
         // pipeline(
@@ -50,7 +49,7 @@ if(app.action === 'encode' || app.action === 'decode'){
         //     }
         // )
     } else {
-        // process.stdin.setEncoding('utf8');
+        // process.stdin.setEncoding('utf8');b
 
         // process.stdin.on('readable', () => {
         //   let chunk;
@@ -68,5 +67,7 @@ if(app.action === 'encode' || app.action === 'decode'){
     }
 
 } else {
+
+  console.log(handleArgumentError, 'error')
     handleArgumentError();
 };

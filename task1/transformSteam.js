@@ -1,9 +1,7 @@
 const { Transform } = require('stream') 
 const { StringDecoder } = require('string_decoder')
 
-
-const encode = require('./helper')
-const decode = require('./helper')
+const { encode, decode } = require('./helper');
 
 
 class transformStream extends Transform {
@@ -17,9 +15,6 @@ class transformStream extends Transform {
     }
 
     _transform (chunk, encoding, callback) {
-      // Convert the Buffer chunks to String.
-      console.log(chunk, encoding, callback, this.shift)
-  
       if (encoding === 'buffer') {
         chunk = this._decoder.write(chunk)
       }
@@ -29,8 +24,8 @@ class transformStream extends Transform {
         process.exit()
       }
       let newChunk 
-      console.log(encode)
       this.action === 'encode' ? newChunk = encode(chunk, this.shift) : newChunk = decode(chunk, this.shift)
+
       callback(null, newChunk)
     }
   }

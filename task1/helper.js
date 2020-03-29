@@ -1,20 +1,17 @@
-const  handleArgumentError = () => {
-    console.log('error')
+exports.handleArgumentError = () => {
     console.error('Invalid arguments, usage: node app.js ');
     process.exit(-1);
 }
 
-const decode = (chunk, shift) => {
+exports.decode = (chunk, shift) => {
     var result = "";
     shift = (26 - shift) % 26;
     result = encode(chunk, shift);
     return result;
 }   
-const encode = (chunk, shift) => {
+exports.encode = (chunk, shift) => {
     return chunk.split('').map((item, i) => {
         let char = item.charCodeAt();    
-          console.log(char)     
-      //  handle uppercase letters
         if(char >= 65 && char <=  90) {
          return  item = String.fromCharCode((char - 65 + shift) % 26 + 65); 
         } else if(char >= 97 && char <= 122){
@@ -24,6 +21,3 @@ const encode = (chunk, shift) => {
     }).join('')
 
 }
-module.exports = handleArgumentError;
-module.exports = decode;
-module.exports = encode;
