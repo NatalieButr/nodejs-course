@@ -1,5 +1,6 @@
 const uuid = require('uuid');
 
+
 class User {
   constructor({
     id = uuid(),

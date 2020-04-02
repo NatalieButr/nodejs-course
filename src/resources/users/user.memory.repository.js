@@ -1,6 +1,18 @@
+const User = require('./user.model')
+
+let users =  new Array(10).fill(1).map(i => new User())
+
 const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
+  return users;
 };
 
-module.exports = { getAll };
+
+const getUser = async(id) => {
+  return users.filter(user => user.id === id)
+}
+
+const createUser = async () => {
+  return users.push( new User)
+}
+
+module.exports = { getAll, getUser };
