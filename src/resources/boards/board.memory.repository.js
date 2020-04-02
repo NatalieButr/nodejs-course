@@ -7,11 +7,12 @@ const getAll = async () => {
 };
 
 const getBoard = async(id) => {
-  return boards.filter(board => board.id === id)
+  return boards.find(board => board.id === id)
 }
 
 const createBoard = async () => {
-  return boards.push(new Board())
+  let newBoard = new Board()
+  return boards = [...boards, newBoard]
 }
 
 const updateBoard = async () => {

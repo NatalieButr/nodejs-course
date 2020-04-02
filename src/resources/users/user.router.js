@@ -11,7 +11,7 @@ router.route('/').get(async (req, res) => {
 //get one user
 router.route('/:id').get(async (req, res) => {
   const user = await usersService.getUser(req.params.id);
-  res.json(user.map(User.toResponse));
+  res.json(User.toResponse(user));
 });
 
 //create use user

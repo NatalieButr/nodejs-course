@@ -7,11 +7,12 @@ const getAll = async () => {
 };
 
 const getUser = async(id) => {
-  return users.filter(user => user.id === id)
+  return users.find(user => user.id === id)
 }
 
 const createUser = async () => {
-  return users.push(new User)
+  let newUser  = new User()
+  return users  = [...users, newUser]
 }
 
 const updateUser = async () => {
