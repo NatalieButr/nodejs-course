@@ -2,8 +2,8 @@ const Task = require('./task.model')
 
 let tasks =  new Array(10).fill(1).map(i => new Task())
 
-const getAll = async () => {
-  return tasks;
+const getAll = async (boardId) => {
+  return tasks.filter(task => task.boardId === boardId);
 };
 
 const getTask = async(id) => {

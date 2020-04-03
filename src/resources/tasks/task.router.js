@@ -1,16 +1,17 @@
-const router = require('express').Router()
+const router = require('express').Router({ mergeParams: true })
 const tasksService = require('./task.service');
 const Task = require('./task.model')
 
 //get all tasks
 router.route('/').get(async (req, res) => {
-  const tasks = await tasksService.getAll();
-  
+  console.log(req.params.boardId, req.params)
+  const tasks = await tasksService.getAll(req.params.boardId);
   res.json(tasks);
 });
 
 //get one task
 router.route('/:id').get(async (req, res) => {
+  console.log(req.params)
   const task = await tasksService.getTask(req.params.id);
   res.json(task);
 });

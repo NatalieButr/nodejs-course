@@ -1,6 +1,6 @@
 const Board = require('./board.model')
 
-let boards =  new Array(10).fill(1).map(i => new Board())
+let boards =  new Array(10).fill(1).map(i => new Board({title: 'sjsj', columns: []}))
 
 const getAll = async () => {
   return boards;
@@ -10,8 +10,8 @@ const getBoard = async(id) => {
   return boards.find(board => board.id === id)
 }
 
-const createBoard = async () => {
-  let newBoard = new Board()
+const createBoard = async (data) => {
+  let newBoard = new Board(data)
   return boards = [...boards, newBoard]
 }
 
