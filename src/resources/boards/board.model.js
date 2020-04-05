@@ -9,7 +9,7 @@ class Board {
   } = {title, columns}) {
     this.id = id;
     this.title = title;
-    this.columns = columns.map(item => new Column(item));
+    this.columns = columns !== undefined && columns.length ? columns.map(item => new Column(item)) : null;
   }
 }
 

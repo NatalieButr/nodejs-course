@@ -11,16 +11,27 @@ const getBoard = async(id) => {
 }
 
 const createBoard = async (data) => {
+  console.log(data)
   let newBoard = new Board(data)
-  return boards = [...boards, newBoard]
+  boards = [...boards, newBoard]
+  return newBoard;
 }
 
-const updateBoard = async () => {
-  return boards
+const updateBoard = async (newData) => {
+  return boards = boards.map(item => {
+    if(item.id === newData.id) {
+      return {...newData}
+    } else return item
+  })
+  return updatedBoarder = boarders.find(item => item.id === newData.id)
 }
 
 const deleteBoard= async (id) => {
-  return boards = boards.filter(board => board.id !== id)
+  let isBoard = boards.find(board => board.id === id);
+  if(isBoard !== undefined) {
+    boards = boards.filter(board => board.id !== id);
+  }
+  return isBoard;
 }
 
 module.exports = { getAll, getBoard, createBoard, updateBoard, deleteBoard };

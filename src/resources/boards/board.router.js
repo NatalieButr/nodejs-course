@@ -11,26 +11,42 @@ router.route('/').get(async (req, res) => {
 //get one board
 router.route('/:id').get(async (req, res) => {
   const board = await boardsService.getBoard(req.params.id);
-  res.json(board);
+  
+  if(board === undefined) {
+    res.status(404).json({ message: `error` });
+  } else {
+    res.status(200).json(board);
+  }
 });
 
 //create new board
-router.route('/:id').post(async (req, res) => {
-  const boards = await boardsService.createBoard(req.body);
-  console.log(req.body)
-  res.json(boards);
+router.route('/').post(async (req, res) => {
+  console.log('create one board', req.body, req.params)
+    const board = await boardsService.createBoard(req.body);
+    res.json(board);
+
 });
 
-// update user
+// update board
 router.route('/:id').put(async (req, res) => {
-  const boards = await boardsService.updateBoard();
-  res.json(boards);
+  console.log('[put] boards')
+  const board = await boardsService.updateBoard(req.body);
+  if(board !== undefined) {
+    res.status(200).json(board);
+  } else {
+    res.status(404).json({ message: `error` });
+  }
 });
 
-// delete user
+// delete board
 router.route('/:id').delete(async (req, res) => {
-  const boards = await boardsService.deleteBoard(req.params.id);
-  res.json(boards);
+  const board = await boardsService.deleteBoard(req.params.id);
+ // console.log(board, req.params)
+  if(board !== undefined){
+    res.status(200).json(board)
+  } else {
+    res.status(404).json({ message: `error` });
+  }
 });
 
 module.exports = router;
