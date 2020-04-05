@@ -23,9 +23,7 @@ const createBoard = async data => {
 };
 
 const updateBoard = async newData => {
-  console.log(boards, newData.id);
   const validateBoard = validateId(boards, newData.id);
-  console.log(validateBoard, 'update board');
   if (validateBoard !== null) {
     boards.map(board => {
       if (board.id === newData.id) {
