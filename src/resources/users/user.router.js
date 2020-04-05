@@ -2,20 +2,19 @@ const router = require('express').Router();
 const User = require('./user.model');
 const usersService = require('./user.service');
 
-<<<<<<< HEAD
-//get all users
+// get all users
 router.route('/').get(async (req, res) => {
   const users = await usersService.getAll();
   res.json(users.map(User.toResponse));
 });
 
-//get one user
+// get one user
 router.route('/:id').get(async (req, res) => {
   const user = await usersService.getUser(req.params.id);
   res.json(User.toResponse(user));
 });
 
-//create user
+// create user
 router.route('/').post(async (req, res) => {
   if (!req.body.name || !req.body.login || !req.body.password) {
     res.status(400).json({ message: 'Not validate data for create user' });
@@ -29,29 +28,21 @@ router.route('/').post(async (req, res) => {
 // update user
 router.route('/:id').put(async (req, res) => {
   const user = await usersService.updateUser(req.body);
-  if(user !== null) {
+  if (user !== null) {
     res.status(200).json(user);
   } else {
-    res.status(400).json({message: 'user is not found'})
+    res.status(400).json({ message: 'user is not found' });
   }
 });
 
 // delete user
 router.route('/:id').delete(async (req, res) => {
   const user = await usersService.deleteUser(req.params.id);
-  if(user !== null) {
+  if (user !== null) {
     res.status(204).json(user);
   } else {
-    res.status(400).json({message: 'user is not found'})
+    res.status(400).json({ message: 'user is not found' });
   }
 });
 
-=======
-router.route('/').get(async (req, res) => {
-  const users = await usersService.getAll();
-  // map user fields to exclude secret fields like "password"
-  res.json(users.map(User.toResponse));
-});
-
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
 module.exports = router;

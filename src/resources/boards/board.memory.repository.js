@@ -1,37 +1,61 @@
-const Board = require('./board.model')
+const { validateId } = require('../../helpers/helpers');
+const taskRepo = require('../tasks/task.memory.repository');
+const Board = require('./board.model');
 
-let boards =  new Array(10).fill(1).map(i => new Board({title: 'sjsj', columns: []}))
+const boards = [
+  new Board({ title: 'First Board', columns: [] }),
+  new Board({ title: 'Second Board', columns: [] })
+];
 
 const getAll = async () => {
   return boards;
 };
 
-const getBoard = async(id) => {
-  return boards.find(board => board.id === id)
-}
+const getBoard = async id => {
+  const validateBoard = validateId(boards, id);
+  return validateBoard;
+};
 
-const createBoard = async (data) => {
-  console.log(data)
-  let newBoard = new Board(data)
-  boards = [...boards, newBoard]
+const createBoard = async data => {
+  const newBoard = new Board(data);
+  boards.push(newBoard);
   return newBoard;
-}
+};
 
-const updateBoard = async (newData) => {
-  return boards = boards.map(item => {
-    if(item.id === newData.id) {
-      return {...newData}
-    } else return item
-  })
-  return updatedBoarder = boarders.find(item => item.id === newData.id)
-}
-
-const deleteBoard= async (id) => {
-  let isBoard = boards.find(board => board.id === id);
-  if(isBoard !== undefined) {
-    boards = boards.filter(board => board.id !== id);
+const updateBoard = async newData => {
+  console.log(boards, newData.id);
+  const validateBoard = validateId(boards, newData.id);
+  console.log(validateBoard, 'update board');
+  if (validateBoard !== null) {
+    boards.map(board => {
+      if (board.id === newData.id) {
+        const index = boards.indexOf(board);
+        boards[index] = newData;
+      }
+      return board;
+    });
   }
-  return isBoard;
-}
+  return validateBoard;
+};
 
-module.exports = { getAll, getBoard, createBoard, updateBoard, deleteBoard };
+const deleteBoard = async id => {
+  const validateBoard = validateId(boards, id);
+  if (validateBoard !== null) {
+    taskRepo.deleteTaskByBoardId(id);
+    boards.forEach(board => {
+      if (board.id === id) {
+        const index = boards.indexOf(board);
+        boards.splice(index, 1);
+      }
+    });
+  }
+  return validateBoard;
+};
+
+module.exports = {
+  getAll,
+  getBoard,
+  createBoard,
+  updateBoard,
+  deleteBoard
+};

@@ -92,11 +92,8 @@ describe('Tasks suite', () => {
 
   describe('POST', () => {
     it('should create task successfully', async () => {
-<<<<<<< HEAD
-=======
       let taskId;
 
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
       await request
         .post(routes.tasks.create(testBoardId))
         .set('Accept', 'application/json')
@@ -105,21 +102,15 @@ describe('Tasks suite', () => {
         .expect('Content-Type', /json/)
         .then(res => {
           expect(res.body.id).to.be.a('string');
-<<<<<<< HEAD
-=======
           taskId = res.body.id;
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
           jestExpect(res.body).toMatchObject({
             ...TEST_TASK_DATA,
             boardId: testBoardId
           });
         });
-<<<<<<< HEAD
-=======
 
       // Teardown
       await request.delete(routes.tasks.delete(testBoardId, taskId));
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
     });
   });
 

@@ -11,8 +11,6 @@ const TEST_USER_DATA = {
   password: 'T35t_P@55w0rd'
 };
 
-<<<<<<< HEAD
-=======
 const TEST_BOARD_DATA = {
   title: 'Autotest board',
   columns: [
@@ -21,7 +19,6 @@ const TEST_BOARD_DATA = {
   ]
 };
 
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
 describe('Users suite', () => {
   let request = unauthorizedRequest;
 
@@ -46,15 +43,12 @@ describe('Users suite', () => {
 
     it('should get a user by id', async () => {
       // Setup:
-<<<<<<< HEAD
-=======
-      //Create the user
+      // Create the user
       await request
-          .post(routes.users.create)
-          .set('Accept', 'application/json')
-          .send(TEST_USER_DATA);
+        .post(routes.users.create)
+        .set('Accept', 'application/json')
+        .send(TEST_USER_DATA);
 
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
       const usersResponse = await request
         .get(routes.users.getAll)
         .set('Accept', 'application/json')
@@ -71,22 +65,16 @@ describe('Users suite', () => {
 
       expect(userResponse.body).to.be.instanceOf(Object);
       expect(userResponse.body.id).to.equal(userId);
-<<<<<<< HEAD
-=======
 
       // Clean up, delete the user we created
       await request.delete(routes.users.delete(userId));
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
     });
   });
 
   describe('POST', () => {
     it('should create user successfully', async () => {
-<<<<<<< HEAD
-=======
       let userId;
 
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
       await request
         .post(routes.users.create)
         .set('Accept', 'application/json')
@@ -95,22 +83,16 @@ describe('Users suite', () => {
         .expect('Content-Type', /json/)
         .then(res => {
           expect(res.body.id).to.be.a('string');
-<<<<<<< HEAD
-=======
           userId = res.body.id;
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
           expect(res.body).to.not.have.property('password');
           jestExpect(res.body).toMatchObject({
             login: TEST_USER_DATA.login,
             name: TEST_USER_DATA.name
           });
         });
-<<<<<<< HEAD
-=======
 
       // Teardown
       await request.delete(routes.users.delete(userId));
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
     });
   });
 
@@ -181,10 +163,7 @@ describe('Users suite', () => {
 
       const boardResponse = await request
         .post(routes.boards.create)
-<<<<<<< HEAD
-=======
         .send(TEST_BOARD_DATA)
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
         .set('Accept', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/);
