@@ -67,6 +67,11 @@ describe('Boards suite', () => {
 
   describe('POST', () => {
     it('should create board successfully', async () => {
+<<<<<<< HEAD
+=======
+      let boardId;
+
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
       await request
         .post(routes.boards.create)
         .set('Accept', 'application/json')
@@ -74,22 +79,37 @@ describe('Boards suite', () => {
         .expect(200)
         .expect('Content-Type', /json/)
         .then(res => {
+<<<<<<< HEAD
           expect(res.body.id).to.be.a('string');
           jestExpect(res.body).toMatchObject(TEST_BOARD_DATA);
         });
+=======
+          boardId = res.body.id;
+          expect(res.body.id).to.be.a('string');
+          jestExpect(res.body).toMatchObject(TEST_BOARD_DATA);
+        });
+
+      // Teardown
+      await request.delete(routes.boards.delete(boardId));
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
     });
   });
 
   describe('PUT', () => {
     it('should update board successfully', async () => {
       // Setup
+<<<<<<< HEAD
       let boardId;
+=======
+      let boardToUpdate;
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
 
       await request
         .post(routes.boards.create)
         .set('Accept', 'application/json')
         .send(TEST_BOARD_DATA)
         .then(res => {
+<<<<<<< HEAD
           boardId = res.body.id;
         });
 
@@ -97,25 +117,45 @@ describe('Boards suite', () => {
         ...TEST_BOARD_DATA,
         title: 'Autotest updated board',
         id: boardId
+=======
+          boardToUpdate = res.body;
+        });
+
+      const updatedBoard = {
+        ...boardToUpdate,
+        title: 'Autotest updated board'
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
       };
 
       // Test
       await request
+<<<<<<< HEAD
         .put(routes.boards.update(boardId))
+=======
+        .put(routes.boards.update(boardToUpdate.id))
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
         .set('Accept', 'application/json')
         .send(updatedBoard)
         .expect(200)
         .expect('Content-Type', /json/);
 
       await request
+<<<<<<< HEAD
         .get(routes.boards.getById(boardId))
+=======
+        .get(routes.boards.getById(updatedBoard.id))
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
         .set('Accept', 'application/json')
         .expect(200)
         .expect('Content-Type', /json/)
         .then(res => jestExpect(res.body).toMatchObject(updatedBoard));
 
       // Teardown
+<<<<<<< HEAD
       await request.delete(routes.boards.delete(boardId));
+=======
+      await request.delete(routes.boards.delete(updatedBoard.id));
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
     });
   });
 

@@ -1,4 +1,5 @@
 const usersRepo = require('./user.memory.repository');
+<<<<<<< HEAD
 const taskServise = require('../tasks/task.service')
 const { validateId } = require('../../helpers/helpers')
 
@@ -34,3 +35,9 @@ const deleteUser = async(id) => {
 
 
 module.exports = { getAll, getUser, createUser, updateUser, deleteUser };
+=======
+
+const getAll = () => usersRepo.getAll();
+
+module.exports = { getAll };
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9

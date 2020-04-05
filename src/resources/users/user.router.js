@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('./user.model');
 const usersService = require('./user.service');
 
+<<<<<<< HEAD
 //get all users
 router.route('/').get(async (req, res) => {
   const users = await usersService.getAll();
@@ -45,4 +46,12 @@ router.route('/:id').delete(async (req, res) => {
   }
 });
 
+=======
+router.route('/').get(async (req, res) => {
+  const users = await usersService.getAll();
+  // map user fields to exclude secret fields like "password"
+  res.json(users.map(User.toResponse));
+});
+
+>>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
 module.exports = router;
