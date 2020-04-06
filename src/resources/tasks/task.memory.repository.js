@@ -1,5 +1,6 @@
 const { validateId } = require('../../helpers/helpers');
 
+const boardsRepo = require('../boards/board.memory.repository');
 const Task = require('./task.model');
 
 let tasks = [
@@ -21,27 +22,30 @@ let tasks = [
   })
 ];
 
-const getAll = async boardId => {
-  return getTasksByBoardId(boardId);
+const getAll = boardId => getTasksByBoardId(boardId);
+
+const getTask = id => {
+  const validateTask = validateId(tasks, id);
+  return validateTask;
 };
 
-const getTask = async id => {
-  return tasks.find(task => task.id === id);
+const getTasksByBoardId = boardId =>
+  tasks.filter(task => task.boardId === boardId);
+
+const createTask = data => {
+  const validateBoardId = validateId(boardsRepo.boards, data.boardId);
+  if (validateBoardId !== null) {
+    const newTask = new Task(data);
+    tasks.push(newTask);
+    return newTask;
+  }
+  return validateBoardId;
 };
 
-const getTasksByBoardId = async boardId => {
-  return tasks.filter(task => task.boardId === boardId);
-};
-
-const createTask = async data => {
-  const newTask = new Task(data);
-  await tasks.push(newTask);
-  return newTask;
-};
-
-const updateTask = async newData => {
+const updateTask = newData => {
   const validateTask = validateId(tasks, newData.id);
-  if (validateTask !== null) {
+  const validateBoard = validateId(boardsRepo.boards, newData.boardId);
+  if (validateTask !== null && validateBoard !== null) {
     tasks = tasks.map(item => {
       if (item.id === newData.id) {
         return (item = { ...newData });
@@ -52,30 +56,20 @@ const updateTask = async newData => {
   return validateTask;
 };
 
-const deleteTask = async (id, boardId) => {
+const deleteTask = (id, boardId) => {
   const validateTask = validateId(tasks, id);
-  const taskInBoard = await getTasksByBoardId(boardId);
-  if (validateTask !== null && taskInBoard.length) {
-    taskInBoard.forEach(task => {
-      if (task.id === id) {
-        const index = tasks.indexOf(task);
-        tasks.splice(index, 1);
-      }
-    });
+  const validateBoard = validateId(boardsRepo.boards, boardId);
+  if (validateTask !== null && validateBoard !== null) {
+    tasks = tasks.filter(task => task.id !== id);
   }
   return validateTask;
 };
 
-const deleteTaskByBoardId = async boardId => {
-  return tasks.forEach(task => {
-    if (task.id === boardId) {
-      const index = tasks.indexOf(task);
-      tasks.splice(index, 1);
-    }
-  });
+const deleteTaskByBoardId = boardId => {
+  tasks = tasks.filter(task => task.boardId !== boardId);
 };
 
-const updateByUserId = async userId => {
+const updateByUserId = userId => {
   return tasks.map(task => {
     if (task.userId === userId) {
       task.userId = null;
@@ -85,9 +79,7 @@ const updateByUserId = async userId => {
   });
 };
 
-const unassignTask = userId => {
-  return updateByUserId(userId);
-};
+const unassignTask = userId => updateByUserId(userId);
 
 module.exports = {
   getAll,

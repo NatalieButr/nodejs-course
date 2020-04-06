@@ -1,5 +1,4 @@
 const { validateId } = require('../../helpers/helpers');
-const taskRepo = require('../tasks/task.memory.repository');
 const Board = require('./board.model');
 
 const boards = [
@@ -7,22 +6,20 @@ const boards = [
   new Board({ title: 'Second Board', columns: [] })
 ];
 
-const getAll = async () => {
-  return boards;
-};
+const getAll = () => boards;
 
-const getBoard = async id => {
+const getBoard = id => {
   const validateBoard = validateId(boards, id);
   return validateBoard;
 };
 
-const createBoard = async data => {
+const createBoard = data => {
   const newBoard = new Board(data);
   boards.push(newBoard);
   return newBoard;
 };
 
-const updateBoard = async newData => {
+const updateBoard = newData => {
   const validateBoard = validateId(boards, newData.id);
   if (validateBoard !== null) {
     boards.map(board => {
@@ -36,11 +33,10 @@ const updateBoard = async newData => {
   return validateBoard;
 };
 
-const deleteBoard = async id => {
+const deleteBoard = id => {
   const validateBoard = validateId(boards, id);
   if (validateBoard !== null) {
-    taskRepo.deleteTaskByBoardId(id);
-    boards.forEach(board => {
+    boards.map(board => {
       if (board.id === id) {
         const index = boards.indexOf(board);
         boards.splice(index, 1);
@@ -55,5 +51,6 @@ module.exports = {
   getBoard,
   createBoard,
   updateBoard,
-  deleteBoard
+  deleteBoard,
+  boards
 };
