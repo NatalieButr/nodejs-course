@@ -10,7 +10,6 @@ router.route('/').get((req, res) => {
 // get one board
 router.route('/:id').get((req, res) => {
   const board = boardsService.getBoard(req.params.id);
-
   if (board !== null) res.status(200).json(board);
   else res.status(404).json({ message: 'error' });
 });

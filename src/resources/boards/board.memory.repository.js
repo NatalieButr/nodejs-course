@@ -8,10 +8,7 @@ const boards = [
 
 const getAll = () => boards;
 
-const getBoard = id => {
-  const validateBoard = validateId(boards, id);
-  return validateBoard;
-};
+const getBoard = id => validateId(boards, id);
 
 const createBoard = data => {
   const newBoard = new Board(data);
@@ -36,13 +33,14 @@ const updateBoard = newData => {
 const deleteBoard = id => {
   const validateBoard = validateId(boards, id);
   if (validateBoard !== null) {
-    boards.map(board => {
+    boards.forEach(board => {
       if (board.id === id) {
         const index = boards.indexOf(board);
         boards.splice(index, 1);
       }
     });
   }
+  // console.log('delete board', validateBoard);
   return validateBoard;
 };
 
