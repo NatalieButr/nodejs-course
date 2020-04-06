@@ -42,7 +42,6 @@ pipeline(
 )
 .then(success and error callbacks)
 ```
-
 **Usage example:**
 
 ```bash
@@ -62,8 +61,6 @@ $ node my_caesar_cli --action decode --shift 7 --input decoded.txt --output plai
 
 > output.txt
 > `Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!`
-<<<<<<< HEAD
-=======
 
 ## Task 2. Express REST service
 
@@ -136,4 +133,3 @@ Let's try to create a competitor for Trello!
 
 * To test the service CRUD methods you can use Swagger html (see [README.md](https://github.com/rolling-scopes-school/nodejs-course-template/blob/master/README.md#running-application)).
 * To generate all entities “id”s use [uuid](https://www.npmjs.com/package/uuid) package.
->>>>>>> 83c785a9ede04c8f3a3601c86040a3b3f156e0d9
