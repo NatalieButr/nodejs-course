@@ -31,4 +31,15 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
 
+// error
+app.get('*', (req, res, next) => {
+  const err = new Error('Page Not Found');
+  err.statusCode = 404;
+  handleError(err, res);
+  next(err);
+});
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
+
 module.exports = app;
