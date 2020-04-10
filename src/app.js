@@ -37,8 +37,19 @@ app.get('*', (req, res) => {
   err.statusCode = 404;
   handleError(err, res);
 });
+
 app.use((err, req, res) => {
   handleError(err, res);
 });
+
+process
+  .on('unhandledRejection', (reason, p) => {
+    console.error(reason, 'Unhandled Rejection at Promise', p);
+  })
+  .on('uncaughtException', err => {
+    console.error(err, 'Uncaught Exception thrown');
+    const exit = process.exit;
+    exit(1);
+  });
 
 module.exports = app;
