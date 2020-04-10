@@ -32,13 +32,12 @@ app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
 
 // error
-app.get('*', (req, res, next) => {
+app.get('*', (req, res) => {
   const err = new Error('Page Not Found');
   err.statusCode = 404;
   handleError(err, res);
-  next(err);
 });
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   handleError(err, res);
 });
 
