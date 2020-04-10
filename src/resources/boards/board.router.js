@@ -29,7 +29,6 @@ router.route('/:id').put((req, res) => {
 // delete board
 router.route('/:id').delete((req, res) => {
   const board = boardsService.deleteBoard(req.params.id);
-
   if (board !== null) res.status(204).json(board);
   else res.status(404).json({ message: 'error' });
 });
