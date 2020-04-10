@@ -9,7 +9,7 @@ const taskRouter = require('./resources/tasks/task.router');
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 const { handleError } = require('./helpers/error');
-const logger = require('./middlewares/logging');
+const { httpLogger } = require('./middlewares');
 
 app.use(express.json());
 
@@ -23,14 +23,8 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-// errors
-app.use((err, req, res, next) => {
-  console.log(err);
-  handleError(err, res);
-});
-
 // logging middleware
-app.use(logger);
+app.use(httpLogger);
 
 // routes
 app.use('/users', userRouter);
