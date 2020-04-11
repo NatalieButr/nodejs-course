@@ -7,10 +7,10 @@ logger.stream = {
   }
 };
 morgan.token('body', req => {
-  return req.body;
+  return JSON.stringify(req.body);
 });
 morgan.token('query', req => {
-  return req.query;
+  return JSON.stringify(req.query);
 });
 
 module.exports = morgan(
