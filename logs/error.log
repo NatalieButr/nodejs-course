@@ -19,3 +19,10 @@
 {"message":"   404 - Task not found - /boards/7d209f9e-a1b2-4d7b-b6c6-2020e845e0fd/tasks/352b2d07-e6b1-467d-87d6-7a55d971ba7e - GET","level":"error"}
 {"message":"   404 - Task not found - /boards/7d209f9e-a1b2-4d7b-b6c6-2020e845e0fd/tasks/d5da6634-4207-4968-a32e-c7651fbfca07 - GET","level":"error"}
 {"message":"   404 - Task not found - /boards/7d209f9e-a1b2-4d7b-b6c6-2020e845e0fd/tasks/45f95682-d8e0-449b-a684-cc67aba752d8 - GET","level":"error"}
+{"message":"   404 - Can't get board with c6d0506f-41be-440b-a52f-ebc5e19e9cbc - /boards/c6d0506f-41be-440b-a52f-ebc5e19e9cbc - GET","level":"error"}
+{"message":"   404 - Task not found - /boards/f2c839d8-f234-49d7-9083-7ee951002636/tasks/undefined - GET","level":"error"}
+{"message":"   404 - Task not found - /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/a3784142-6fb4-49b4-931a-3ccd2617a102 - GET","level":"error"}
+{"message":"   404 - Task not found - /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/0138a5b1-d6c1-4df2-b6c8-7f743a409e1f - GET","level":"error"}
+{"message":"   404 - Task not found - /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/5988f43a-a092-4922-becd-80c1196153b4 - GET","level":"error"}
+{"message":"   404 - Task not found - /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/1efc234d-ddb4-4774-b74b-ae25d257ff03 - GET","level":"error"}
+{"message":"   404 - Task not found - /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/a7d5a8b7-7949-42f2-b4dc-a22f71e7bed6 - GET","level":"error"}
