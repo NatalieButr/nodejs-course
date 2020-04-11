@@ -1,19 +1,25 @@
-const { createLogger, transports, format } = require('winston');
+const { createLogger, format, transports } = require('winston');
 
 const logger = createLogger({
-  format: format.combine(
-    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-    format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
-  ),
+  level: 'silly',
+  format: format.combine(format.colorize(), format.cli()),
   transports: [
+    new transports.Console(),
     new transports.File({
-      filename: './logs/all-logs.log',
-      json: false,
-      maxsize: 5242880,
-      maxFiles: 5
+      filename: 'logs/error.log',
+      level: 'error',
+      format: format.combine(format.uncolorize(), format.json())
     }),
-    new transports.Console()
-  ]
+    new transports.File({
+      filename: 'logs/info.log',
+      level: 'info',
+      format: format.combine(format.uncolorize(), format.json())
+    })
+  ],
+  msg:
+    'HTTP: {{req.method}} URL: {{req.url}} BODY: {{req.body}} QUERY: {{req.query}}'
 });
+
+logger.info('kkk');
 
 module.exports = logger;

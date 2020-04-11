@@ -10,6 +10,7 @@ const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 const { handleError } = require('./helpers/error');
 const { httpLogger } = require('./middlewares');
+const logger = require('./helpers/logger');
 
 app.use(express.json());
 
@@ -32,18 +33,26 @@ app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
 
 // error
-app.get('*', (req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.get('*', (req, res, next) => {
   const err = new Error('Page Not Found');
   err.statusCode = 404;
   handleError(err, res);
 });
 
-app.use((err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  logger.error(
+    `${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${
+      req.method
+    }`
+  );
   handleError(err, res);
 });
 
 process
   .on('unhandledRejection', (reason, p) => {
+    console.log(reason, p);
     console.error(reason, 'Unhandled Rejection at Promise', p);
   })
   .on('uncaughtException', err => {
