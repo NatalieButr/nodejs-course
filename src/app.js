@@ -50,15 +50,4 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
-process
-  .on('unhandledRejection', (reason, p) => {
-    console.log(reason, p);
-    console.error(reason, 'Unhandled Rejection at Promise', p);
-  })
-  .on('uncaughtException', err => {
-    console.error(err, 'Uncaught Exception thrown');
-    const exit = process.exit;
-    exit(1);
-  });
-
 module.exports = app;
