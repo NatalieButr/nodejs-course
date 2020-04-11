@@ -15,11 +15,7 @@ const logger = createLogger({
       level: 'info',
       format: format.combine(format.uncolorize(), format.json())
     })
-  ],
-  msg:
-    'HTTP: {{req.method}} URL: {{req.url}} BODY: {{req.body}} QUERY: {{req.query}}'
+  ]
 });
-
-logger.info('kkk');
 
 module.exports = logger;

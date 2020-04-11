@@ -2,9 +2,7 @@ const morgan = require('morgan');
 const logger = require('../helpers/logger');
 
 logger.stream = {
-  write(message, encoding) {
-    logger.info(message);
-  }
+  write: message => logger.info(message);
 };
 morgan.token('body', req => {
   return JSON.stringify(req.body);
