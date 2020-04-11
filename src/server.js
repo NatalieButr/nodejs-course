@@ -3,14 +3,11 @@ const app = require('./app');
 const logger = require('./helpers/logger');
 
 process
-  .on('unhandledRejection', (reason, p) => {
-    console.log(reason, p);
-    logger.error(reason, 'Unhandled Rejection at Promise', p);
+  .on('unhandledRejection', (reason, promise) => {
+    logger.error('Unhandled Rejection at Promise', reason, promise);
   })
   .on('uncaughtException', err => {
-    logger.error(`${err.statusCode || 500} - ${err.message}`);
-    const exit = process.exit;
-    exit(1);
+    logger.error(`Uncaught Exception thrown: ${err.message}`, err);
   });
 
 app.listen(PORT, () =>
