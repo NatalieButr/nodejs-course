@@ -251,3 +251,78 @@
 {"message":"   404 - Task not found - /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/a7d5a8b7-7949-42f2-b4dc-a22f71e7bed6 - GET","level":"error"}
 {"message":"    GET 404 /boards/54626f5a-349a-423a-8cf4-0443080b4a8d/tasks/a7d5a8b7-7949-42f2-b4dc-a22f71e7bed6 {} Body {} size 62 - 1.685 ms\n","level":"info"}
 {"message":"    DELETE 204 /boards/ebbddbaa-fe26-4e95-988a-1d91d616e37b {} Body {} size - - 1.340 ms\n","level":"info"}
+{"message":"    GET 200 /users {} Body {} size 162 - 7.715 ms\n","level":"info"}
+{"message":"    POST 200 /boards {} Body {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]} size 229 - 1.944 ms\n","level":"info"}
+{"message":"    POST 200 /boards {} Body {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]} size 229 - 0.737 ms\n","level":"info"}
+{"message":"    POST 200 /users {} Body {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"} size 84 - 1.064 ms\n","level":"info"}
+{"message":"    POST 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks {} Body {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null} size 186 - 2.532 ms\n","level":"info"}
+{"message":"    GET 200 /boards {} Body {} size 628 - 1.043 ms\n","level":"info"}
+{"message":"    GET 200 /users {} Body {} size 247 - 0.758 ms\n","level":"info"}
+{"message":"    GET 200 /users/db6dea96-d351-4df1-bf60-b2418b242332 {} Body {} size 77 - 1.081 ms\n","level":"info"}
+{"message":"    GET 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks {} Body {} size 188 - 1.148 ms\n","level":"info"}
+{"message":"    GET 200 /boards {} Body {} size 628 - 0.716 ms\n","level":"info"}
+{"message":"    DELETE 204 /users/db6dea96-d351-4df1-bf60-b2418b242332 {} Body {} size - - 1.528 ms\n","level":"info"}
+{"message":"    GET 200 /boards/0afb89de-0afb-464d-b173-bbc35b996693 {} Body {} size 82 - 0.828 ms\n","level":"info"}
+{"message":"    GET 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks {} Body {} size 188 - 0.634 ms\n","level":"info"}
+{"message":"    POST 200 /users {} Body {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"} size 84 - 0.728 ms\n","level":"info"}
+{"message":"    POST 200 /boards {} Body {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]} size 229 - 0.735 ms\n","level":"info"}
+{"message":"    GET 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks/b20a84af-ff60-4140-b60d-3e5d19613846 {} Body {} size 186 - 1.078 ms\n","level":"info"}
+{"message":"    POST 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks {} Body {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null} size 186 - 0.769 ms\n","level":"info"}
+{"message":"    DELETE 204 /users/6b8e3acb-6f48-4866-9e43-b825a09b4ddb {} Body {} size - - 0.787 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/8f86d7b4-bf2f-40b6-b964-21334d9b495f {} Body {} size - - 1.105 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks/0f9fcb75-e620-4ac3-8aa9-42d4903b902a {} Body {} size - - 1.144 ms\n","level":"info"}
+{"message":"    POST 200 /users {} Body {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"} size 84 - 0.681 ms\n","level":"info"}
+{"message":"    POST 200 /boards {} Body {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]} size 229 - 0.740 ms\n","level":"info"}
+{"message":"    PUT 200 /users/e1e7c483-2ef2-497b-a9ad-1829d0df0dbe {} Body {\"name\":\"Autotest updated TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\",\"id\":\"e1e7c483-2ef2-497b-a9ad-1829d0df0dbe\"} size 111 - 1.100 ms\n","level":"info"}
+{"message":"    POST 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks {} Body {\"title\":\"Autotest task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":null,\"columnId\":null} size 186 - 0.774 ms\n","level":"info"}
+{"message":"    PUT 200 /boards/ce1acb3f-0d6d-4ae8-944a-3247607f37e0 {} Body {\"id\":\"ce1acb3f-0d6d-4ae8-944a-3247607f37e0\",\"title\":\"Autotest updated board\",\"columns\":[{\"id\":\"f5ffd7af-9e18-4bca-85d6-a9cc7c345831\",\"title\":\"Backlog\",\"order\":1},{\"id\":\"093d41b6-7f71-452a-8770-510cb3126b19\",\"title\":\"Sprint\",\"order\":2}]} size 229 - 1.070 ms\n","level":"info"}
+{"message":"    GET 200 /users/e1e7c483-2ef2-497b-a9ad-1829d0df0dbe {} Body {} size 101 - 0.775 ms\n","level":"info"}
+{"message":"    PUT 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks/bc4c4816-7b9b-409f-86e0-ca0f9b98f27b {} Body {\"id\":\"bc4c4816-7b9b-409f-86e0-ca0f9b98f27b\",\"title\":\"Autotest updated task\",\"order\":0,\"description\":\"Lorem ipsum\",\"userId\":null,\"boardId\":\"36dab89a-f664-4496-aef7-4a3db67a8020\",\"columnId\":null} size 186 - 1.202 ms\n","level":"info"}
+{"message":"    GET 200 /boards/ce1acb3f-0d6d-4ae8-944a-3247607f37e0 {} Body {} size 237 - 0.503 ms\n","level":"info"}
+{"message":"    DELETE 204 /users/e1e7c483-2ef2-497b-a9ad-1829d0df0dbe {} Body {} size - - 0.595 ms\n","level":"info"}
+{"message":"    GET 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks/bc4c4816-7b9b-409f-86e0-ca0f9b98f27b {} Body {} size 194 - 0.559 ms\n","level":"info"}
+{"message":"    POST 200 /users {} Body {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"} size 84 - 0.687 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/ce1acb3f-0d6d-4ae8-944a-3247607f37e0 {} Body {} size - - 0.567 ms\n","level":"info"}
+{"message":"    GET 200 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks/b20a84af-ff60-4140-b60d-3e5d19613846 {} Body {} size 186 - 0.589 ms\n","level":"info"}
+{"message":"    DELETE 204 /users/b48e8319-e1de-449c-b94a-9d6f553360d4 {} Body {} size - - 0.745 ms\n","level":"info"}
+{"message":"    GET 200 /boards {} Body {} size 628 - 0.520 ms\n","level":"info"}
+{"message":"    POST 200 /users {} Body {\"name\":\"TEST_USER\",\"login\":\"test_user\",\"password\":\"T35t_P@55w0rd\"} size 84 - 0.597 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/0afb89de-0afb-464d-b173-bbc35b996693 {} Body {} size - - 0.567 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/36dab89a-f664-4496-aef7-4a3db67a8020/tasks/b20a84af-ff60-4140-b60d-3e5d19613846 {} Body {} size - - 0.713 ms\n","level":"info"}
+{"message":"    POST 200 /boards {} Body {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]} size 229 - 0.618 ms\n","level":"info"}
+{"message":"   404 - Can't get board with 0afb89de-0afb-464d-b173-bbc35b996693 - /boards/0afb89de-0afb-464d-b173-bbc35b996693 - GET","level":"error"}
+{"message":"    GET 404 /boards/0afb89de-0afb-464d-b173-bbc35b996693 {} Body {} size 105 - 1.490 ms\n","level":"info"}
+{"message":"   404 - Task not found - /boards/b20a84af-ff60-4140-b60d-3e5d19613846/tasks/undefined - GET","level":"error"}
+{"message":"    GET 404 /boards/b20a84af-ff60-4140-b60d-3e5d19613846/tasks/undefined {} Body {} size 62 - 0.852 ms\n","level":"info"}
+{"message":"    POST 200 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d/tasks {} Body {\"title\":\"Task #1\",\"order\":1,\"description\":\"Lorem ipsum\",\"userId\":\"d5099ab7-2053-45d0-8d37-0807570652d8\",\"boardId\":\"6d28e941-bea1-4f8b-ab10-35e325ffb55d\"} size 198 - 0.690 ms\n","level":"info"}
+{"message":"    POST 200 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d/tasks {} Body {\"title\":\"Task #2\",\"order\":2,\"description\":\"Lorem ipsum\",\"userId\":\"d5099ab7-2053-45d0-8d37-0807570652d8\",\"boardId\":\"6d28e941-bea1-4f8b-ab10-35e325ffb55d\"} size 198 - 0.955 ms\n","level":"info"}
+{"message":"    POST 200 /boards {} Body {\"title\":\"Autotest board\",\"columns\":[{\"title\":\"Backlog\",\"order\":1},{\"title\":\"Sprint\",\"order\":2}]} size 229 - 0.672 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/36dab89a-f664-4496-aef7-4a3db67a8020 {} Body {} size - - 1.977 ms\n","level":"info"}
+{"message":"    DELETE 204 /users/d5099ab7-2053-45d0-8d37-0807570652d8 {} Body {} size - - 0.604 ms\n","level":"info"}
+{"message":"    POST 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks {} Body {\"title\":\"Task #1\",\"order\":1,\"description\":\"Lorem ipsum\",\"boardId\":\"2a7987dd-77a8-4075-8b70-9808aa9a9c16\",\"userId\":null,\"columnId\":null} size 180 - 0.680 ms\n","level":"info"}
+{"message":"    POST 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks {} Body {\"title\":\"Task #2\",\"order\":2,\"description\":\"Lorem ipsum\",\"boardId\":\"2a7987dd-77a8-4075-8b70-9808aa9a9c16\",\"userId\":null,\"columnId\":null} size 180 - 0.616 ms\n","level":"info"}
+{"message":"    POST 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks {} Body {\"title\":\"Task #3\",\"order\":3,\"description\":\"Lorem ipsum\",\"boardId\":\"2a7987dd-77a8-4075-8b70-9808aa9a9c16\",\"userId\":null,\"columnId\":null} size 180 - 0.646 ms\n","level":"info"}
+{"message":"    POST 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks {} Body {\"title\":\"Task #4\",\"order\":4,\"description\":\"Lorem ipsum\",\"boardId\":\"2a7987dd-77a8-4075-8b70-9808aa9a9c16\",\"userId\":null,\"columnId\":null} size 180 - 0.602 ms\n","level":"info"}
+{"message":"    POST 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks {} Body {\"title\":\"Task #5\",\"order\":5,\"description\":\"Lorem ipsum\",\"boardId\":\"2a7987dd-77a8-4075-8b70-9808aa9a9c16\",\"userId\":null,\"columnId\":null} size 180 - 0.602 ms\n","level":"info"}
+{"message":"    GET 200 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d/tasks/380ce878-79a8-46db-9472-b69475f07d8c {} Body {} size 164 - 0.594 ms\n","level":"info"}
+{"message":"    GET 200 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d/tasks/6a164132-ff0c-411a-bca0-28323f18050e {} Body {} size 164 - 0.495 ms\n","level":"info"}
+{"message":"    GET 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/09a7aa90-5449-4953-8f56-4d4d5e696e6e {} Body {} size 180 - 0.558 ms\n","level":"info"}
+{"message":"    GET 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/375a0c12-778b-4ab8-82e3-d8d3300b9871 {} Body {} size 180 - 0.662 ms\n","level":"info"}
+{"message":"    GET 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/33fc7ce5-3cdb-4ae2-8fdd-418c91ec07ce {} Body {} size 180 - 0.613 ms\n","level":"info"}
+{"message":"    GET 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/14d78957-1ba3-4e61-8b25-bb0824acce8b {} Body {} size 180 - 0.555 ms\n","level":"info"}
+{"message":"    GET 200 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/bacda2ff-6583-4326-acc4-11f987277940 {} Body {} size 180 - 0.573 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d/tasks/380ce878-79a8-46db-9472-b69475f07d8c {} Body {} size - - 0.517 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d/tasks/6a164132-ff0c-411a-bca0-28323f18050e {} Body {} size - - 0.652 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16 {} Body {} size - - 0.515 ms\n","level":"info"}
+{"message":"    DELETE 204 /boards/6d28e941-bea1-4f8b-ab10-35e325ffb55d {} Body {} size - - 0.523 ms\n","level":"info"}
+{"message":"   404 - Task not found - /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/09a7aa90-5449-4953-8f56-4d4d5e696e6e - GET","level":"error"}
+{"message":"    GET 404 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/09a7aa90-5449-4953-8f56-4d4d5e696e6e {} Body {} size 62 - 0.719 ms\n","level":"info"}
+{"message":"   404 - Task not found - /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/375a0c12-778b-4ab8-82e3-d8d3300b9871 - GET","level":"error"}
+{"message":"    GET 404 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/375a0c12-778b-4ab8-82e3-d8d3300b9871 {} Body {} size 62 - 0.606 ms\n","level":"info"}
+{"message":"   404 - Task not found - /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/33fc7ce5-3cdb-4ae2-8fdd-418c91ec07ce - GET","level":"error"}
+{"message":"    GET 404 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/33fc7ce5-3cdb-4ae2-8fdd-418c91ec07ce {} Body {} size 62 - 1.494 ms\n","level":"info"}
+{"message":"   404 - Task not found - /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/14d78957-1ba3-4e61-8b25-bb0824acce8b - GET","level":"error"}
+{"message":"    GET 404 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/14d78957-1ba3-4e61-8b25-bb0824acce8b {} Body {} size 62 - 0.723 ms\n","level":"info"}
+{"message":"   404 - Task not found - /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/bacda2ff-6583-4326-acc4-11f987277940 - GET","level":"error"}
+{"message":"    GET 404 /boards/2a7987dd-77a8-4075-8b70-9808aa9a9c16/tasks/bacda2ff-6583-4326-acc4-11f987277940 {} Body {} size 62 - 0.649 ms\n","level":"info"}
+{"code":"EADDRINUSE","errno":"EADDRINUSE","syscall":"listen","address":"::","port":4000,"level":"error","message":"   Uncaught Exception thrown: listen EADDRINUSE: address already in use :::4000listen EADDRINUSE: address already in use :::4000","stack":"Error: listen EADDRINUSE: address already in use :::4000\n    at Server.setupListenHandle [as _listen2] (net.js:1309:16)\n    at listenInCluster (net.js:1357:12)\n    at Server.listen (net.js:1445:7)\n    at Function.listen (/home/natalie/node-course/nodejs-course/node_modules/express/lib/application.js:618:24)\n    at Object.<anonymous> (/home/natalie/node-course/nodejs-course/src/server.js:13:5)\n    at Module._compile (internal/modules/cjs/loader.js:1158:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1178:10)\n    at Module.load (internal/modules/cjs/loader.js:1002:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:901:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:74:12)"}

@@ -42,12 +42,12 @@ app.get('*', (req, res, next) => {
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
+  handleError(err, res);
   logger.error(
     `${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${
       req.method
     }`
   );
-  handleError(err, res);
 });
 
 module.exports = app;
