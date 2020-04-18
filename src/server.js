@@ -1,5 +1,6 @@
 const { PORT } = require('./common/config');
 const app = require('./app');
+const connectToMongo = require('./db/db.client');
 const logger = require('./helpers/logger');
 
 process
@@ -10,6 +11,8 @@ process
     logger.error(`Uncaught Exception thrown: ${err.message}`, err);
   });
 
-app.listen(PORT, () =>
-  console.log(`App is running on http://localhost:${PORT}`)
-);
+connectToMongo(() => {
+  app.listen(PORT, () =>
+    console.log(`App is running on http://localhost:${PORT}`)
+  );
+});

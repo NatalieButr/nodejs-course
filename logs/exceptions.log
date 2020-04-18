@@ -250,3 +250,73 @@ Error: listen EADDRINUSE: address already in use :::4000
     at Module.load (internal/modules/cjs/loader.js:1002:32)
     at Function.Module._load (internal/modules/cjs/loader.js:901:14)
     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:74:12)
+[31m[31merror[31m[39m:   uncaughtException: User is not defined
+ReferenceError: User is not defined
+    at Object.<anonymous> (/home/natalie/node-course/nodejs-course/src/db/db.client.js:6:7)
+    at Module._compile (internal/modules/cjs/loader.js:1158:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1178:10)
+    at Module.load (internal/modules/cjs/loader.js:1002:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:901:14)
+    at Module.require (internal/modules/cjs/loader.js:1044:19)
+    at require (internal/modules/cjs/helpers.js:77:18)
+    at Object.<anonymous> (/home/natalie/node-course/nodejs-course/src/server.js:3:24)
+    at Module._compile (internal/modules/cjs/loader.js:1158:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1178:10)
+    at Module.load (internal/modules/cjs/loader.js:1002:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:901:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:74:12)
+    at internal/main/run_main_module.js:18:47
+[31m[31merror[31m[39m:   uncaughtException: user.save is not a function
+TypeError: user.save is not a function
+    at /home/natalie/node-course/nodejs-course/src/db/db.client.js:22:32
+    at Array.forEach (<anonymous>)
+    at NativeConnection.<anonymous> (/home/natalie/node-course/nodejs-course/src/db/db.client.js:22:11)
+    at Object.onceWrapper (events.js:417:28)
+    at NativeConnection.emit (events.js:311:20)
+    at /home/natalie/node-course/nodejs-course/node_modules/mongoose/lib/connection.js:819:13
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/utils.js:731:5
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/mongo_client.js:217:7
+    at connectCallback (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/operations/connect.js:350:5)
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/operations/connect.js:586:5
+    at Object.callback (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:297:43)
+    at processWaitQueue (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:1036:21)
+    at NativeTopology.serverUpdateHandler (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:554:7)
+    at Server.emit (events.js:311:20)
+    at Monitor.<anonymous> (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/server.js:147:12)
+    at Monitor.emit (events.js:323:22)
+[31m[31merror[31m[39m:   uncaughtException: user.save is not a function
+TypeError: user.save is not a function
+    at /home/natalie/node-course/nodejs-course/src/db/db.client.js:22:32
+    at Array.forEach (<anonymous>)
+    at NativeConnection.<anonymous> (/home/natalie/node-course/nodejs-course/src/db/db.client.js:22:11)
+    at Object.onceWrapper (events.js:417:28)
+    at NativeConnection.emit (events.js:311:20)
+    at /home/natalie/node-course/nodejs-course/node_modules/mongoose/lib/connection.js:819:13
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/utils.js:731:5
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/mongo_client.js:217:7
+    at connectCallback (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/operations/connect.js:350:5)
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/operations/connect.js:586:5
+    at Object.callback (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:297:43)
+    at processWaitQueue (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:1036:21)
+    at NativeTopology.serverUpdateHandler (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:554:7)
+    at Server.emit (events.js:311:20)
+    at Monitor.<anonymous> (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/server.js:147:12)
+    at Monitor.emit (events.js:323:22)
+[31m[31merror[31m[39m:   uncaughtException: user.save is not a function
+TypeError: user.save is not a function
+    at /home/natalie/node-course/nodejs-course/src/db/db.client.js:24:32
+    at Array.forEach (<anonymous>)
+    at NativeConnection.<anonymous> (/home/natalie/node-course/nodejs-course/src/db/db.client.js:24:11)
+    at Object.onceWrapper (events.js:417:28)
+    at NativeConnection.emit (events.js:311:20)
+    at /home/natalie/node-course/nodejs-course/node_modules/mongoose/lib/connection.js:819:13
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/utils.js:731:5
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/mongo_client.js:217:7
+    at connectCallback (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/operations/connect.js:350:5)
+    at /home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/operations/connect.js:586:5
+    at Object.callback (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:297:43)
+    at processWaitQueue (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:1036:21)
+    at NativeTopology.serverUpdateHandler (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/topology.js:554:7)
+    at Server.emit (events.js:311:20)
+    at Monitor.<anonymous> (/home/natalie/node-course/nodejs-course/node_modules/mongodb/lib/core/sdam/server.js:147:12)
+    at Monitor.emit (events.js:323:22)
