@@ -31,14 +31,13 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
 
-// error
+// errors
 // eslint-disable-next-line no-unused-vars
 app.get('*', (req, res, next) => {
   const err = new Error('Page Not Found');
   err.statusCode = 404;
   handleError(err, req, res, next);
 });
-
 app.use(handleError);
 
 module.exports = app;
