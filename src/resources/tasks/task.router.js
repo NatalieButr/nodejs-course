@@ -4,9 +4,16 @@ const { ErrorHandler } = require('../../helpers/error');
 const Task = require('./task.model');
 
 // get all tasks
-router.route('/').get(async (req, res) => {
-  const tasks = await tasksService.getAll(req.params.boardId);
-  res.status(200).json(tasks.map(Task.toResponse));
+router.route('/').get(async (req, res, next) => {
+  try {
+    const tasks = await tasksService.getAll(req.params.boardId);
+    if (!tasks) {
+      throw new ErrorHandler(404, 'Tasks not get');
+    }
+    res.status(200).json(tasks.map(Task.toResponse));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // get one task
@@ -29,6 +36,9 @@ router.route('/').post(async (req, res, next) => {
       ...req.body,
       ...req.params
     });
+    if (!newTask) {
+      throw new ErrorHandler(404, 'Task not create');
+    }
     res.json(Task.toResponse(newTask));
   } catch (err) {
     return next(err);
@@ -39,19 +49,27 @@ router.route('/').post(async (req, res, next) => {
 router.route('/:id').put(async (req, res, next) => {
   try {
     const updatedTask = await tasksService.updateTask(req.body);
+    if (!updatedTask) {
+      throw new ErrorHandler(404, 'Task not update');
+    }
     res.status(200).json(Task.toResponse(updatedTask));
   } catch (err) {
     return next(err);
   }
-  // else throw new ErrorHandler(400, 'Task not found');
 });
 
 // delete task
-router.route('/:id').delete(async (req, res) => {
-  const { id, boardId } = req.params;
-  const task = await tasksService.deleteTask(id, boardId);
-  res.status(204).json(Task.toResponse(task));
-  //  else throw new ErrorHandler(400, 'Task not delete');
+router.route('/:id').delete(async (req, res, next) => {
+  try {
+    const { id, boardId } = req.params;
+    const task = await tasksService.deleteTask(id, boardId);
+    if (!task) {
+      throw new ErrorHandler(404, 'Task not delete');
+    }
+    res.status(204).json(Task.toResponse(task));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 module.exports = router;

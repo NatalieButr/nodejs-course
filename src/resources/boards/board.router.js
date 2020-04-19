@@ -4,9 +4,16 @@ const { ErrorHandler } = require('../../helpers/error');
 const Board = require('./board.model');
 
 // get all boards
-router.route('/').get(async (req, res) => {
-  const boards = await boardsService.getAll();
-  res.json(boards.map(Board.toResponse));
+router.route('/').get(async (req, res, next) => {
+  try {
+    const boards = await boardsService.getAll();
+    if (!boards) {
+      throw new ErrorHandler(404, 'boards not get');
+    }
+    res.json(boards.map(Board.toResponse));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // get one board
@@ -20,7 +27,6 @@ router.route('/:id').get(async (req, res, next) => {
   } catch (err) {
     return next(err);
   }
-  // else throw new ErrorHandler(404, `Can't get board with ${req.params.id}`);
 });
 
 // create new board
