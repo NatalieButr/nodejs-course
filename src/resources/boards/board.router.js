@@ -1,38 +1,63 @@
 const router = require('express').Router();
 const boardsService = require('./board.service');
 const { ErrorHandler } = require('../../helpers/error');
+const Board = require('./board.model');
 
 // get all boards
-router.route('/').get((req, res) => {
-  const boards = boardsService.getAll();
-  res.json(boards);
+router.route('/').get(async (req, res) => {
+  const boards = await boardsService.getAll();
+  res.json(boards.map(Board.toResponse));
 });
 
 // get one board
-router.route('/:id').get((req, res) => {
-  const board = boardsService.getBoard(req.params.id);
-  if (board !== null) res.status(200).json(board);
-  else throw new ErrorHandler(404, `Can't get board with ${req.params.id}`);
+router.route('/:id').get(async (req, res, next) => {
+  try {
+    const board = await boardsService.getBoard(req.params.id);
+    if (!board) {
+      throw new ErrorHandler(404, 'board not get');
+    }
+    res.json(Board.toResponse(board));
+  } catch (err) {
+    return next(err);
+  }
+  // else throw new ErrorHandler(404, `Can't get board with ${req.params.id}`);
 });
 
 // create new board
-router.route('/').post((req, res) => {
-  const board = boardsService.createBoard(req.body);
-  res.status(200).json(board);
+router.route('/').post(async (req, res, next) => {
+  try {
+    const newBoard = await boardsService.createBoard(req.body);
+    res.json(Board.toResponse(newBoard));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // update board
-router.route('/:id').put((req, res) => {
-  const board = boardsService.updateBoard(req.body);
-  if (board !== null) res.status(200).json(board);
-  else throw new ErrorHandler(404, "Can't update board");
+router.route('/:id').put(async (req, res, next) => {
+  try {
+    const { params, body } = req;
+    const board = await boardsService.updateBoard({ ...params, ...body });
+    if (!board) {
+      throw new ErrorHandler(400, 'board not update');
+    }
+    res.status(200).json(Board.toResponse(board));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // delete board
-router.route('/:id').delete((req, res) => {
-  const board = boardsService.deleteBoard(req.params.id);
-  if (board !== null) res.status(204).json(board);
-  else throw new ErrorHandler(404, "Can't delete board");
+router.route('/:id').delete(async (req, res, next) => {
+  try {
+    const board = await boardsService.deleteBoard(req.params.id);
+    if (board === null) {
+      throw new ErrorHandler(404, 'board not delete');
+    }
+    res.status(204).json(Board.toResponse(board));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 module.exports = router;

@@ -1,40 +1,57 @@
 const router = require('express').Router({ mergeParams: true });
 const tasksService = require('./task.service');
 const { ErrorHandler } = require('../../helpers/error');
+const Task = require('./task.model');
 
 // get all tasks
-router.route('/').get((req, res) => {
-  const tasks = tasksService.getAll(req.params.boardId);
-  res.status(200).json(tasks);
+router.route('/').get(async (req, res) => {
+  const tasks = await tasksService.getAll(req.params.boardId);
+  res.status(200).json(tasks.map(Task.toResponse));
 });
 
 // get one task
-router.route('/:id').get((req, res) => {
-  const task = tasksService.getTask(req.params.id);
-  if (task !== null) res.status(200).json(task);
-  else throw new ErrorHandler(404, 'Task not found');
+router.route('/:id').get(async (req, res, next) => {
+  try {
+    const task = await tasksService.getTask(req.params.id);
+    if (!task) {
+      throw new ErrorHandler(404, 'Task not get');
+    }
+    res.status(200).json(Task.toResponse(task));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // create new task
-router.route('/').post((req, res) => {
-  const task = tasksService.createTask({ ...req.body, ...req.params });
-  if (task !== null) res.status(200).json(task);
-  else throw new ErrorHandler(404, 'Cant create task');
+router.route('/').post(async (req, res, next) => {
+  try {
+    const newTask = await tasksService.createTask({
+      ...req.body,
+      ...req.params
+    });
+    res.json(Task.toResponse(newTask));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // update task
-router.route('/:id').put((req, res) => {
-  const task = tasksService.updateTask(req.body);
-  if (task !== null) res.status(200).json(task);
-  else throw new ErrorHandler(400, 'Task not found');
+router.route('/:id').put(async (req, res, next) => {
+  try {
+    const updatedTask = await tasksService.updateTask(req.body);
+    res.status(200).json(Task.toResponse(updatedTask));
+  } catch (err) {
+    return next(err);
+  }
+  // else throw new ErrorHandler(400, 'Task not found');
 });
 
 // delete task
-router.route('/:id').delete((req, res) => {
+router.route('/:id').delete(async (req, res) => {
   const { id, boardId } = req.params;
-  const task = tasksService.deleteTask(id, boardId);
-  if (task !== null) res.status(204).json(task);
-  else throw new ErrorHandler(400, 'Task not delete');
+  const task = await tasksService.deleteTask(id, boardId);
+  res.status(204).json(Task.toResponse(task));
+  //  else throw new ErrorHandler(400, 'Task not delete');
 });
 
 module.exports = router;

@@ -7,6 +7,9 @@ const { ErrorHandler } = require('../../helpers/error');
 // get all users
 router.route('/').get(async (req, res) => {
   const users = await usersService.getAll();
+  if (!users) {
+    throw new ErrorHandler(404, 'Cannot get list of users');
+  }
   res.json(users.map(User.toResponse));
 });
 
@@ -17,29 +20,41 @@ router.route('/:id').get(async (req, res) => {
 });
 
 // create user
-router.route('/').post(async (req, res) => {
-  if (!req.body.name || !req.body.login || !req.body.password) {
-    throw new ErrorHandler(400, 'Not validate data for create user');
-  } else {
-    const newUser = new User(req.body);
-    await usersService.createUser(newUser);
-    res.json(User.toResponse(newUser));
+router.route('/').post(async (req, res, next) => {
+  try {
+    const { name, login, password } = req.body;
+    if (name && login && password) {
+      const newUser = await usersService.createUser(req.body);
+      res.json(User.toResponse(newUser)).end();
+    } else {
+      throw new ErrorHandler(404, 'bad request');
+    }
+  } catch (err) {
+    return next(err);
   }
 });
 
 // update user
 router.route('/:id').put(async (req, res) => {
-  const user = await usersService.updateUser(req.body);
-
-  if (user !== null) res.status(200).json(user);
-  else throw new ErrorHandler(400, 'user not found');
+  const { params, body } = req;
+  const user = await usersService.updateUser({ ...params, ...body });
+  if (!user) {
+    throw new ErrorHandler(400, 'user not update');
+  }
+  res.status(200).json(user);
 });
 
 // delete user
-router.route('/:id').delete(async (req, res) => {
-  const user = await usersService.deleteUser(req.params.id);
-  if (user !== null) res.status(204).json(user);
-  else throw new ErrorHandler(400, 'user not delete');
+router.route('/:id').delete(async (req, res, next) => {
+  try {
+    const user = await usersService.deleteUser(req.params.id);
+    if (user === null) {
+      throw new ErrorHandler(400, 'user not delete');
+    }
+    res.status(204).end(user);
+  } catch (err) {
+    return next(err);
+  }
 });
 
 module.exports = router;

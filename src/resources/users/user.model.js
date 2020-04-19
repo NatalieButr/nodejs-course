@@ -8,13 +8,15 @@ const userSchema = new mongoose.Schema(
     password: String,
     _id: {
       type: String,
-      default: uuid
+      default: uuid,
+      alias: 'id'
     }
   },
   { versionKey: false }
 );
 
-userSchema.static.toResponse = user => {
+userSchema.statics.toResponse = user => {
+  if (!user) return {};
   const { id, name, login } = user;
   return { id, name, login };
 };

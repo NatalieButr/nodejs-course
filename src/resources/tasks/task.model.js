@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const taskSchema = new mongoose.Schema(
   {
     title: String,
-    order: String,
+    order: Number,
     description: String,
     userId: String,
     boardId: String,
@@ -16,6 +16,12 @@ const taskSchema = new mongoose.Schema(
   },
   { versionKey: false }
 );
+
+taskSchema.statics.toResponse = task => {
+  if (!task) return {};
+  const { id, title, order, description, userId, boardId, columnId } = task;
+  return { id, title, order, description, userId, boardId, columnId };
+};
 
 const Task = mongoose.model('Task', taskSchema);
 module.exports = Task;

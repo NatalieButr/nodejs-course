@@ -43,11 +43,11 @@ const connectToMongo = callback => {
   const db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', () => {
-    console.log('mongoose connected');
     db.dropDatabase();
     users.forEach(user => user.save());
     boards.forEach(board => board.save());
     tasks.forEach(task => task.save());
+    console.log('mongoose is connected');
     callback();
   });
 };

@@ -10,7 +10,6 @@ const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 const { handleError } = require('./helpers/error');
 const { httpLogger } = require('./middlewares');
-const logger = require('./helpers/logger');
 
 app.use(express.json());
 
@@ -37,17 +36,9 @@ app.use('/boards/:boardId/tasks', taskRouter);
 app.get('*', (req, res, next) => {
   const err = new Error('Page Not Found');
   err.statusCode = 404;
-  handleError(err, res);
+  handleError(err, req, res, next);
 });
 
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  handleError(err, res);
-  logger.error(
-    `${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${
-      req.method
-    }`
-  );
-});
+app.use(handleError);
 
 module.exports = app;
