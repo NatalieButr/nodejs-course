@@ -43,6 +43,7 @@ const connectToMongo = callback => {
   const db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', () => {
+    // drop and create data
     db.dropDatabase();
     users.forEach(user => user.save());
     boards.forEach(board => board.save());
