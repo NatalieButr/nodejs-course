@@ -33,6 +33,9 @@ router.route('/:id').get(async (req, res, next) => {
 router.route('/').post(async (req, res, next) => {
   try {
     const newBoard = await boardsService.createBoard(req.body);
+    if (!newBoard) {
+      throw new ErrorHandler(400, 'board not create');
+    }
     res.json(Board.toResponse(newBoard));
   } catch (err) {
     return next(err);
