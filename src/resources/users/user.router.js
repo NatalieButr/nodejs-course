@@ -66,7 +66,7 @@ router.route('/:id').delete(async (req, res, next) => {
     if (user === null) {
       throw new ErrorHandler(400, 'user not delete');
     }
-    res.status(204).end(user);
+    res.status(204).end();
   } catch (err) {
     return next(err);
   }
