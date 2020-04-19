@@ -5,18 +5,29 @@ const usersService = require('./user.service');
 const { ErrorHandler } = require('../../helpers/error');
 
 // get all users
-router.route('/').get(async (req, res) => {
-  const users = await usersService.getAll();
-  if (!users) {
-    throw new ErrorHandler(404, 'Cannot get list of users');
+router.route('/').get(async (req, res, next) => {
+  try {
+    const users = await usersService.getAll();
+    if (!users) {
+      throw new ErrorHandler(404, 'Cannot get list of users');
+    }
+    res.json(users.map(User.toResponse));
+  } catch (err) {
+    return next(err);
   }
-  res.json(users.map(User.toResponse));
 });
 
 // get one user
-router.route('/:id').get(async (req, res) => {
-  const user = await usersService.getUser(req.params.id);
-  res.json(User.toResponse(user));
+router.route('/:id').get(async (req, res, next) => {
+  try {
+    const user = await usersService.getUser(req.params.id);
+    if (!user) {
+      throw new ErrorHandler(404, 'Cannot get list of users');
+    }
+    res.json(User.toResponse(user));
+  } catch (err) {
+    return next(err);
+  }
 });
 
 // create user
@@ -35,13 +46,17 @@ router.route('/').post(async (req, res, next) => {
 });
 
 // update user
-router.route('/:id').put(async (req, res) => {
-  const { params, body } = req;
-  const user = await usersService.updateUser({ ...params, ...body });
-  if (!user) {
-    throw new ErrorHandler(400, 'user not update');
+router.route('/:id').put(async (req, res, next) => {
+  try {
+    const { params, body } = req;
+    const user = await usersService.updateUser({ ...params, ...body });
+    if (!user) {
+      throw new ErrorHandler(400, 'user not update');
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    return next(err);
   }
-  res.status(200).json(user);
 });
 
 // delete user
