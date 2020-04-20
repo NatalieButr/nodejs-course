@@ -42,7 +42,8 @@ const deleteTask = async (id, boardId) => {
 };
 
 const deleteTaskByBoardId = async boardId => Task.deleteMany({ boardId });
-const unassignTask = userId => Task.updateMany({ userId }, { userId: null });
+const unassignTask = async userId =>
+  Task.updateMany({ userId }, { userId: null });
 
 module.exports = {
   getAll,
