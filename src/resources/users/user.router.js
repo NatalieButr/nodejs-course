@@ -8,6 +8,7 @@ const { ErrorHandler } = require('../../helpers/error');
 router.route('/').get(async (req, res, next) => {
   try {
     const users = await usersService.getAll();
+    console.log(users);
     if (!users) {
       throw new ErrorHandler(404, 'Cannot get list of users');
     }
