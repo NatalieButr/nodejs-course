@@ -3,11 +3,14 @@ const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
 
+const app = express();
+const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
+
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
-const app = express();
-const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
+const loginRouter = require('./resources/login/login.router');
+
 const { handleError } = require('./helpers/error');
 const { httpLogger } = require('./middlewares');
 
@@ -30,8 +33,9 @@ app.use(httpLogger);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
+app.use('/login', loginRouter);
 
-// error
+// errors
 // eslint-disable-next-line no-unused-vars
 app.get('*', (req, res, next) => {
   const err = new Error('Page Not Found');
