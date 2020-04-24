@@ -8,7 +8,8 @@ const Task = require('../resources/tasks/task.model');
 // default data
 const users = [
   new User({ name: 'Harry', login: 'potter', password: 'tomredl' }),
-  new User({ name: 'Hermiona', login: 'hermiona', password: 'ron' })
+  new User({ name: 'Hermiona', login: 'hermiona', password: 'ron' }),
+  new User({ name: 'Hermiona', login: 'admin', password: 'admin' })
 ];
 const boards = [
   new Board({ title: 'First Board', columns: [] }),
