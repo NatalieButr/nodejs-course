@@ -12,7 +12,7 @@ const taskRouter = require('./resources/tasks/task.router');
 const loginRouter = require('./resources/login/login.router');
 
 const { handleError } = require('./helpers/error');
-const { httpLogger } = require('./middlewares');
+const { httpLogger, auth } = require('./middlewares');
 
 app.use(express.json());
 
@@ -26,13 +26,13 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-// logging middleware
+// logging middlewareap
 app.use(httpLogger);
 
 // routes
-app.use('/users', userRouter);
-app.use('/boards', boardRouter);
-app.use('/boards/:boardId/tasks', taskRouter);
+app.use('/users', auth, userRouter);
+app.use('/boards', auth, boardRouter);
+app.use('/boards/:boardId/tasks', auth, taskRouter);
 app.use('/login', loginRouter);
 
 // errors

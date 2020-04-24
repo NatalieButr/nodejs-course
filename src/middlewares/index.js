@@ -1,5 +1,6 @@
 const httpLogger = require('./httpLogger');
-
+const auth = require('./auth');
 module.exports = {
-  httpLogger
+  httpLogger,
+  auth
 };
