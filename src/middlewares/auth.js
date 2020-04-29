@@ -4,6 +4,7 @@ const { JWT_SECRET_KEY } = require('../common/config.js');
 
 const auth = (req, res, next) => {
   let token = req.headers['x-access-token'] || req.headers.authorization;
+
   if (!token) {
     return res
       .status(401)
